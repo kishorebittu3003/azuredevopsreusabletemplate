@@ -1,0 +1,27 @@
+parameters:
+  - name: jdkversion
+    type: string 
+    values:
+      - '1.8'
+      - '1.17'
+  - name: mavengoal
+    type: string 
+    default: 'package'
+    values: 
+      - package
+      - clean
+      - install
+      - compile 
+  - name: pomfile 
+    type: string 
+    default: 'pom.xml'       
+steps:
+  - script: echo hello 
+  - task: Maven@3 
+    inputs: 
+      mavenPOMFile: "${{ parameters.pomfile }}"
+      publishJUnitResults: true
+      testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      javaHomeOption: "${{ parameters.jdkversion }}"
+    
+        

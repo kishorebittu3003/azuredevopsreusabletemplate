@@ -1,0 +1,12 @@
+--- 
+pool: azure 
+trigger:
+  - main 
+  - master 
+jobs:
+  - job: 'buildingpipeline' 
+    displayName: building 
+    steps:
+      - template: ./templates/maven.yml
+        parameters: 
+          jdkversion: '1.17'
