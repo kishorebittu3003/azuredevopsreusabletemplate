@@ -1,12 +1,8 @@
 --- 
-pool: azure 
+pool: reusable  
 trigger:
-  - main 
-  - master 
-jobs:
-  - job: 'buildingpipeline' 
-    displayName: building 
-    steps:
-      - template: ./templates/maven.yml
-        parameters: 
-          jdkversion: '1.17'
+  - reusable  
+extends:
+  - template: ./templates/maven.yml
+    parameters: 
+      jdkversion: '1.17'
